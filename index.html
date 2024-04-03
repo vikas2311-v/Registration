@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>User Registration Form</h2>
+        <form id="registrationForm">
+            <input type="text" id="firstname" name="firstname" placeholder="First Name" onkeyup="space(data)">
+            <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+            <input type="text" id="email" placeholder="Email" onkeyup="white()" required>
+            <input type="password" id="password" placeholder="Password" onkeyup="black()" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onkeyup="validatePassword()" required>
+            <input type="text" id="date" placeholder="Date of birth" class="textbox-n" onfocus="(this.type='date')" onblur="(this.type='text')">
+            <textarea id="city" id="city" placeholder="City" required></textarea>
+            <select id="state" name="state" required>
+                <option value="">Select State</option>
+            </select>
+            <select id="country" name="country" onchange="populateStates()" required>
+                <option value="India" selected>India</option>
+                <option value="China">China</option>
+                <option value="Korea">Korea</option>
+                <option value="Japan">Japan</option>
+            </select>
+            <div>
+                Gender:<br>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Prefer not to Say</label>
+            </div>
+            <br>
+            <div>
+                Language preferences:<br/>
+                <input type="checkbox" id="lang1" name="language" value="English">
+                <label for="lang1">English</label>
+                <input type="checkbox" id="lang2" name="language" value="Spanish">
+                <label for="lang2">Spanish</label>
+                <input type="checkbox" id="lang3" name="language" value="French">
+                <label for="lang3">French</label>
+                <input type="checkbox" id="lang4" name="language" value="German">
+                <label for="lang4">German</label>
+                <input type="checkbox" id="lang5" name="language" value="Chinese">
+                <label for="lang6">Japanese</label><br>
+                <input type="checkbox" id="lang7" name="language" value="Korean">
+                <label for="lang7">Korean</label>
+                <input type="checkbox" id="lang8" name="language" value="Arabic">
+                <label for="lang5">Chinese</label>
+                <input type="checkbox" id="lang6" name="language" value="Japanese">
+                <label for="lang8">Arabic</label> &nbsp;
+                <input type="checkbox" id="lang9" name="language" value="Russian">
+                <label for="lang9">Russian</label>
+                <input type="checkbox" id="lang10" name="language" value="Hindi">
+                <label for="lang10">Hindi</label>
+            </div>
+            <br><br>
+            <div>
+                <error id="alert" style="color: red;"></error>
+            </div>
+            <input type="submit" value="Register" id="register" onclick="submitForm(event)">
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
