@@ -1,104 +1,73 @@
-var pattern = /\s/g;
-var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-var alertp = document.getElementById('alert');
-
-function checkWhiteSpace(input) {
-    if (input.value.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Name";
-        return false;
-    }
-    alertp.innerHTML = "";
-    return true;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
 }
 
-function checkEmail() {
-    var user = document.getElementById("email").value;
-
-    if (user.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Email";
-        return false;
-    }
-
-    if (!user.match(emailPattern)) {
-        alertp.innerHTML = "** Invalid Email Format";
-        return false;
-    }
-
-    alertp.innerHTML = "";
-    return true;
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-function checkPassword() {
-    var pass = document.getElementById("password").value;
-
-    if (pass.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Password";
-        return false;
-    }
-
-    if (!pass.match(passwordPattern)) {
-        alertp.innerHTML = "* Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
-        return false;
-    }
-
-    alertp.innerHTML = "";
-    return true;
+#firstname,
+#lastname,
+#email,
+#password,
+#confirmPassword,
+#date,
+#city,
+#state,
+#country {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-function validatePassword() {
-    var pass = document.getElementById("password").value;
-    var confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (pass !== confirmPassword) {
-        alertp.innerHTML = "** Passwords do not match";
-        return false;
-    }
-
-    alertp.innerHTML = "";
-    return true;
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
 }
 
-
-function states() {
-    var countrySelect = document.getElementById("country");
-    var stateSelect = document.getElementById("state");
-    var country = countrySelect.options[countrySelect.selectedIndex].value;
-
-    stateSelect.innerHTML = "<option value=''>Select State</option>";
-    if (country === "India") {
-        stateSelect.innerHTML += "<option value='state1'>Karnataka</option>";
-        stateSelect.innerHTML += "<option value='state2'>Maharashtra</option>";
-        stateSelect.innerHTML += "<option value='state3'>Andhra Pradesh</option>";
-    } else if (country === "China") {
-        stateSelect.innerHTML += "<option value='state4'>Guangxi</option>";
-        stateSelect.innerHTML += "<option value='state5'>Ningxia</option>";
-        stateSelect.innerHTML += "<option value='state6'>Hebei</option>";
-    } else if (country === "Korea") {
-        stateSelect.innerHTML += "<option value='state7'>North Chung cheong</option>";
-        stateSelect.innerHTML += "<option value='state8'>SouthChung cheong</option>";
-        stateSelect.innerHTML += "<option value='state9'>Gangwon</option>";
-    } else if (country === "Japan") {
-        stateSelect.innerHTML += "<option value='state10'> Akita</option>";
-        stateSelect.innerHTML += "<option value='state11'> Yamagata</option>";
-        stateSelect.innerHTML += "<option value='state12'> Fukushima</option>";
-    }
-
+#register {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-function validateForm() {
-    if (!checkEmail() || !checkPassword()) {
-        alertp.innerHTML = "* Please fill all details";
-        return false;
-    }
-    return true;
+#register:hover {
+    background-color: #20badd;
 }
 
-function submitForm(event) {
-    event.preventDefault();
-    if (validateForm()) {
-        window.location.href = "login.html";
-        return true;
+@media screen and (max-width: 600px) {
+    div.container div input[type="radio"] {
+        width: calc(50% - 15px);
+        margin-right: 5px;
+        margin-bottom: 5px;
     }
-    return false;
+    div.container div input[type="radio"]:nth-child(odd) {
+        clear: left;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div.container div input[type="checkbox"] {
+        width: calc(50% - 15px);
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    div.container div input[type="checkbox"]:nth-child(odd) {
+        clear: left;
+    }
 }
