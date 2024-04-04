@@ -3,7 +3,16 @@ var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
 var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 var alertp = document.getElementById('alert');
 
-function white() {
+function checkWhiteSpace(input) {
+    if (input.value.match(pattern)) {
+        alertp.innerHTML = "** White Spaces are not allowed in Name";
+        return false;
+    }
+    alertp.innerHTML = "";
+    return true;
+}
+
+function checkEmail() {
     var user = document.getElementById("email").value;
 
     if (user.match(pattern)) {
@@ -20,9 +29,8 @@ function white() {
     return true;
 }
 
-function black() {
+function checkPassword() {
     var pass = document.getElementById("password").value;
-    var confirmPassword = document.getElementById('confirmPassword').value;
 
     if (pass.match(pattern)) {
         alertp.innerHTML = "** White Spaces are not allowed in Password";
@@ -51,7 +59,8 @@ function validatePassword() {
     return true;
 }
 
-function populateStates() {
+
+function states() {
     var countrySelect = document.getElementById("country");
     var stateSelect = document.getElementById("state");
     var country = countrySelect.options[countrySelect.selectedIndex].value;
@@ -74,21 +83,22 @@ function populateStates() {
         stateSelect.innerHTML += "<option value='state11'> Yamagata</option>";
         stateSelect.innerHTML += "<option value='state12'> Fukushima</option>";
     }
+
 }
 
-function space(data) {
-    var isSpace = pattern.test(data);
-    if (isSpace) {
-        alertp.innerHTML = "** White Spaces are not allowed in Email";
+function validateForm() {
+    if (!checkEmail() || !checkPassword()) {
+        alertp.innerHTML = "* Please fill all details";
         return false;
     }
     return true;
 }
 
-
 function submitForm(event) {
     event.preventDefault();
     if (validateForm()) {
         window.location.href = "login.html";
+        return true;
     }
+    return false;
 }
