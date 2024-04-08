@@ -1,18 +1,19 @@
 var pattern = /\s/g;
 var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
 var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-var alertp = document.getElementById('alert');
+var alerte = document.getElementById('emailError');
+var alertp = document.getElementById('passwordError');
 
 function white() {
     var user = document.getElementById("email").value;
 
     if (user.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Email";
+        alerte.innerHTML = "** White Spaces are not allowed in Email";
         return false;
     }
 
     if (!user.match(emailPattern)) {
-        alertp.innerHTML = "** Invalid Email Format";
+        alerte.innerHTML = "** Invalid Email Format";
         return false;
     }
 
@@ -34,15 +35,6 @@ function black() {
     }
 
     alertp.innerHTML = "";
-    return true;
-}
-
-function space(data) {
-    var isSpace = pattern.test(data);
-    if (isSpace) {
-        alertp.innerHTML = "** White Spaces are not allowed in Email";
-        return false;
-    }
     return true;
 }
 
