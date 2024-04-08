@@ -3,60 +3,102 @@ var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
 var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 var alertp = document.getElementById('alert');
 
-function checkWhiteSpace(input) {
-    if (input.value.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Name";
+
+function checkFirstName() {
+    var firstName = document.getElementById("firstName").value;
+    var firstNameError = document.getElementById("firstNameError");
+    if (firstName.match(pattern)) {
+        firstNameError.textContent = "* White Spaces are not allowed in Fist Name";
         return false;
     }
-    alertp.innerHTML = "";
+    firstNameError.textContent = "";
     return true;
 }
 
+function checkLastName() {
+    var lastName = document.getElementById("lastName").value;
+    var lastNameError = document.getElementById("lastNameError");
+    if (lastName.match(pattern)) {
+        lastNameError.textContent = "* White Spaces are not allowed in Last Name";
+        return false;
+    }
+    lastNameError.textContent = "";
+    return true;
+}
+
+
 function checkEmail() {
     var user = document.getElementById("email").value;
+    var emailError = document.getElementById("emailError");
 
     if (user.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Email";
+        emailError.innerHTML = "** White Spaces are not allowed in Email";
         return false;
     }
 
     if (!user.match(emailPattern)) {
-        alertp.innerHTML = "** Invalid Email Format";
+        emailError.innerHTML = "** Invalid Email Format";
         return false;
     }
 
-    alertp.innerHTML = "";
+    emailError.innerHTML = "";
     return true;
 }
 
 function checkPassword() {
     var pass = document.getElementById("password").value;
+    var passwordError = document.getElementById("passwordError");
 
     if (pass.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Password";
+        passwordError.innerHTML = "** White Spaces are not allowed in Password";
         return false;
     }
 
     if (!pass.match(passwordPattern)) {
-        alertp.innerHTML = "* Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
+        passwordError.innerHTML = "* Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
         return false;
     }
 
-    alertp.innerHTML = "";
+    passwordError.innerHTML = "";
     return true;
 }
 
 function validatePassword() {
     var pass = document.getElementById("password").value;
     var confirmPassword = document.getElementById('confirmPassword').value;
+    var confirmError = document.getElementById('confirmError');
 
     if (pass !== confirmPassword) {
-        alertp.innerHTML = "** Passwords do not match";
+        confirmError.innerHTML = "** Passwords do not match";
         return false;
     }
 
-    alertp.innerHTML = "";
+    confirmError.innerHTML = "";
     return true;
+}
+
+function autocompleteCity(input) {
+    var cities = ["Bangalore", "Chennai", "Coimbatore", "Delhi", "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"];
+
+    var container = document.getElementById("autocomplete-container");
+    container.innerHTML = '';
+
+    var val = input.value.toLowerCase();
+    if (!val) return false;
+
+    cities.forEach(function(city) {
+        if (city.toLowerCase().indexOf(val) > -1) {
+            var div = document.createElement("div");
+            div.textContent = city;
+            div.addEventListener("click", function(e) {
+                input.value = this.textContent;
+                container.innerHTML = '';
+            });
+            container.appendChild(div);
+        }
+    });
+
+    container.style.display = 'block';
 }
 
 
@@ -87,18 +129,34 @@ function states() {
 }
 
 function validateForm() {
-    if (!checkEmail() || !checkPassword()) {
+    var firstNameValid = checkFirstName();
+    var lastNameValid = checkLastName();
+    var emailValid = checkEmail();
+    var passwordValid = checkPassword();
+    var confirmPasswordValid = validatePassword();
+    var cityValid = document.getElementById("city").value.trim() !== "";
+
+    if (!firstNameValid || !lastNameValid || !emailValid || !passwordValid || !confirmPasswordValid || !cityValid) {
         alertp.innerHTML = "* Please fill all details";
         return false;
     }
     return true;
 }
 
-function submitForm(event) {
+
+function submitForm(event)
+
+{
     event.preventDefault();
     if (validateForm()) {
         window.location.href = "login.html";
         return true;
+    } else {
+        var formFields = document.querySelectorAll('input[type="text"], input[type="password"], select');
+        var filled = Array.from(formFields).some(field => field.value.trim() !== '');
+        if (!filled) {
+            alertp.innerHTML = "* Please fill in the form";
+        }
+        return false;
     }
-    return false;
 }
