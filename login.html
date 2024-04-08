@@ -14,10 +14,11 @@
         <h2>Login</h2>
         <form id="loginForm" onsubmit="return validateForm()">
             <input type="text" placeholder="Email" id="email" onkeyup="white()" required>
+            <error id="emailError"></error>
             <br><br>
             <input type="password" placeholder="Password" id="password" onkeyup="black()" required>
             <br><br>
-            <error id="alert"></error>
+            <error id="passwordError"></error>
             <br>
             <input type="submit" id="login" value="Login" onclick="submitForm(event)">
         </form>
