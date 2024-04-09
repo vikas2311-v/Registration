@@ -8,12 +8,12 @@ function white() {
     var user = document.getElementById("email").value;
 
     if (user.match(pattern)) {
-        alerte.innerHTML = "** White Spaces are not allowed in Email";
+        alerte.innerHTML = "* White Spaces are not allowed in Email";
         return false;
     }
 
     if (!user.match(emailPattern)) {
-        alerte.innerHTML = "** Invalid Email Format";
+        alerte.innerHTML = "* Invalid Email Format";
         return false;
     }
 
@@ -25,7 +25,7 @@ function black() {
     var pass = document.getElementById("password").value;
 
     if (pass.match(pattern)) {
-        alertp.innerHTML = "** White Spaces are not allowed in Password";
+        alertp.innerHTML = "* White Spaces are not allowed in Password";
         return false;
     }
 
