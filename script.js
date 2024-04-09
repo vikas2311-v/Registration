@@ -32,12 +32,12 @@ function checkEmail() {
     var emailError = document.getElementById("emailError");
 
     if (user.match(pattern)) {
-        emailError.innerHTML = "** White Spaces are not allowed in Email";
+        emailError.innerHTML = "* White Spaces are not allowed in Email";
         return false;
     }
 
     if (!user.match(emailPattern)) {
-        emailError.innerHTML = "** Invalid Email Format";
+        emailError.innerHTML = "* Invalid Email Format";
         return false;
     }
 
@@ -50,7 +50,7 @@ function checkPassword() {
     var passwordError = document.getElementById("passwordError");
 
     if (pass.match(pattern)) {
-        passwordError.innerHTML = "** White Spaces are not allowed in Password";
+        passwordError.innerHTML = "* White Spaces are not allowed in Password";
         return false;
     }
 
@@ -78,7 +78,7 @@ function validatePassword() {
 }
 
 function autocompleteCity(input) {
-    var cities = ["Bangalore", "Chennai", "Coimbatore", "Delhi", "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"];
+    var cities = ["Bangalore", "Chennai", "Coimbatore", "Delhi", "New York", "Busan", "Incheon", "Daegu", "Shanghai", "Shenzhen", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"];
 
     var container = document.getElementById("autocomplete-container");
     container.innerHTML = '';
