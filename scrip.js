@@ -1,6 +1,6 @@
 var pattern = /\s/g;
 var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+var passwordPattern = /^(?=.*[a-z])(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 var alerte = document.getElementById('emailError');
 var alertp = document.getElementById('passwordError');
 
