@@ -14,21 +14,37 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#firstName,
-#lastName,
-#email,
-#password,
-#confirmPassword,
+input[type="text"],
 #date,
-#city,
-#state,
-#country {
+select {
     width: calc(100% - 22px);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.text-container {
+    display: block;
+    position: relative;
+    overflow: visible;
+}
+
+.text-container input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    transition: right 0.2s;
 }
 
 #autocomplete-container {
@@ -73,23 +89,18 @@ input[type="checkbox"] {
 }
 
 @media screen and (max-width: 600px) {
-    div.container div input[type="radio"] {
-        width: calc(50% - 15px);
-        margin-right: 5px;
+    .container .text-container .btn {
+        width: calc(50% - -25px);
+        right: -29px;
+    }
+    .container div input[type="radio"],
+    .container div input[type="checkbox"] {
+        width: calc(50% - 10px);
+        margin-right: -11px;
         margin-bottom: 5px;
     }
-    div.container div input[type="radio"]:nth-child(odd) {
-        clear: left;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    div.container div input[type="checkbox"] {
-        width: calc(50% - 15px);
-        margin-right: 5px;
-        margin-bottom: 5px;
-    }
-    div.container div input[type="checkbox"]:nth-child(odd) {
+    .container div input[type="radio"]:nth-child(odd),
+    .container div input[type="checkbox"]:nth-child(odd) {
         clear: left;
     }
 }
