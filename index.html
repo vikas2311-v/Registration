@@ -22,7 +22,8 @@
             <error id="passwordError" style="color: red;"></error>
             <input type="password" id="confirmPassword" placeholder="Confirm Password" onkeyup="validatePassword()" required>
             <error id="confirmError" style="color: red;"></error>
-            <input type="text" id="date" placeholder="Date of birth" class="textbox-n" onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input type="text" id="date" placeholder="Date of birth" class="textbox-n" onkeyup="validateDate()" onfocus="(this.type='date')" onblur="(this.type='text')">
+            <error id="dateError" style="color: red;"></error>
             <input type="text" id="city" placeholder="City" required onkeyup="autocompleteCity(this)">
             <div id="autocomplete-container"></div>
             <select id="state" name="state" required>
