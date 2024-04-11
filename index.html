@@ -18,9 +18,15 @@
             <error id="lastNameError" style="color: red;"></error>
             <input type="text" id="email" placeholder="Email" onkeyup="checkEmail()" required>
             <error id="emailError" style="color: red;"></error>
-            <input type="password" id="password" placeholder="Password" onkeyup="checkPassword()" required>
+            <div class="text-container">
+                <input type="password" id="password" placeholder="Password" onkeyup="checkPassword()" required>
+                <input type="checkbox" onclick="togglePassword('password')" class="btn">
+            </div>
             <error id="passwordError" style="color: red;"></error>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password" onkeyup="validatePassword()" required>
+            <div class="text-container">
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" onkeyup="validatePassword()" required>
+                <input type="checkbox" onclick="togglePassword('confirmPassword')" class="btn">
+            </div>
             <error id="confirmError" style="color: red;"></error>
             <input type="text" id="date" placeholder="Date of birth" class="textbox-n" onkeyup="validateDate()" onfocus="(this.type='date')" onblur="(this.type='text')">
             <error id="dateError" style="color: red;"></error>
