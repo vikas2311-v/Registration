@@ -1,6 +1,6 @@
 var pattern = /\s/g;
 var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-var passwordPattern = /^(?=.*[a-z])(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
+var passwordPattern = /^(?=.*[a-z])(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 var alertp = document.getElementById('alert');
 
 
@@ -55,7 +55,7 @@ function checkPassword() {
     }
 
     if (!pass.match(passwordPattern)) {
-        passwordError.innerHTML = "* Password must contain at least 6 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
+        passwordError.innerHTML = "* Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
         return false;
     }
 
