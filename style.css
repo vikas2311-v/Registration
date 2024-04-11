@@ -43,7 +43,7 @@ select {
 .btn {
     position: absolute;
     top: 18px;
-    right: 18px;
+    right: 22px;
     transition: right 0.2s;
 }
 
