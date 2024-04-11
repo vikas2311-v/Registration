@@ -1,6 +1,6 @@
 var pattern = /\s/g;
 var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+var passwordPattern = /^(?=.*[a-z])(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
 var alertp = document.getElementById('alert');
 
 
@@ -55,7 +55,7 @@ function checkPassword() {
     }
 
     if (!pass.match(passwordPattern)) {
-        passwordError.innerHTML = "* Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
+        passwordError.innerHTML = "* Password must contain at least 6 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character";
         return false;
     }
 
@@ -76,6 +76,19 @@ function validatePassword() {
     confirmError.innerHTML = "";
     return true;
 }
+
+function validateDate() {
+    var inputDate = new Date(document.getElementById('date').value);
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+
+    if (inputDate > currentDate) {
+        dateError.innerHTML = "Date of birth cannot be in the future";
+        return false;
+    }
+    return true;
+}
+
 
 function autocompleteCity(input) {
     var cities = ["Bangalore", "Chennai", "Coimbatore", "Delhi", "New York", "Busan", "Incheon", "Daegu", "Shanghai", "Shenzhen", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"];
@@ -128,20 +141,28 @@ function states() {
 
 }
 
+
 function validateForm() {
     var firstNameValid = checkFirstName();
     var lastNameValid = checkLastName();
     var emailValid = checkEmail();
     var passwordValid = checkPassword();
     var confirmPasswordValid = validatePassword();
+    var dateValid = validateDate()
     var cityValid = document.getElementById("city").value.trim() !== "";
+    var stateValid = document.getElementById("state").value.trim() !== "";
+    var countryValid = document.getElementById("country").value.trim() !== "";
+    var genderValid = document.querySelector('input[name="gender"]:checked');
+    var languageValid = document.querySelectorAll('input[name="language"]:checked').length > 0;
 
-    if (!firstNameValid || !lastNameValid || !emailValid || !passwordValid || !confirmPasswordValid || !cityValid) {
-        alertp.innerHTML = "* Please fill all details";
+
+    if (!firstNameValid || !lastNameValid || !emailValid || !passwordValid || !confirmPasswordValid || !dateValid || !cityValid || !stateValid || !countryValid || !genderValid || !languageValid) {
+        document.getElementById('alert').innerHTML = "* Please fill all details";
         return false;
     }
     return true;
 }
+
 
 
 function submitForm(event)
@@ -151,12 +172,6 @@ function submitForm(event)
     if (validateForm()) {
         window.location.href = "login.html";
         return true;
-    } else {
-        var formFields = document.querySelectorAll('input[type="text"], input[type="password"], select');
-        var filled = Array.from(formFields).some(field => field.value.trim() !== '');
-        if (!filled) {
-            alertp.innerHTML = "* Please fill in the form";
-        }
-        return false;
     }
+    return false;
 }
