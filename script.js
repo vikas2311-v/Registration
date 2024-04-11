@@ -77,6 +77,15 @@ function validatePassword() {
     return true;
 }
 
+function togglePassword(inputId) {
+    var x = document.getElementById(inputId);
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
 function validateDate() {
     var inputDate = new Date(document.getElementById('date').value);
     var currentDate = new Date();
